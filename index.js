@@ -86,7 +86,7 @@ function mqttlightbulbAccessory(log, config) {
 
 		if (topic == that.topics.getOn) {
 			var status = message.toString();
-			that.on = (status == "true" ? true : false);
+			that.on = (status == 1 ? true : false);
 		   	that.service.getCharacteristic(Characteristic.On).setValue(that.on, undefined, 'fromSetValue');
 		}
 
