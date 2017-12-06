@@ -86,7 +86,7 @@ function mqttlightbulbAccessory(log, config) {
 
 		if (topic == that.topics.getOn) {
 			var status = message.toString();
-			that.on = (status == 1 ? true : false);
+			that.on = (status == "1" ? true : false);
 		   	that.service.getCharacteristic(Characteristic.On).setValue(that.on, undefined, 'fromSetValue');
 		}
 
@@ -128,7 +128,7 @@ mqttlightbulbAccessory.prototype.getStatus = function(callback) {
 mqttlightbulbAccessory.prototype.setStatus = function(status, callback, context) {
 	if(context !== 'fromSetValue') {
 		this.on = status;
-	  this.client.publish(this.topics.setOn, status ? 1 : 0,{ retain: this.retain});
+	  this.client.publish(this.topics.setOn, status ? "1" : "0",{ retain: this.retain});
 	}
 	callback();
 }
