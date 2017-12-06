@@ -128,7 +128,7 @@ mqttlightbulbAccessory.prototype.getStatus = function(callback) {
 mqttlightbulbAccessory.prototype.setStatus = function(status, callback, context) {
 	if(context !== 'fromSetValue') {
 		this.on = status;
-	  this.client.publish(this.topics.setOn, status ? "true" : "false",{ retain: this.retain});
+	  this.client.publish(this.topics.setOn, status ? 1 : 0,{ retain: this.retain});
 	}
 	callback();
 }
